@@ -14,6 +14,7 @@
 
 #TabsToolbar {
   position: absolute !important;
+  display:block !important;
   bottom: 0 !important;
   width: 100vw !important;
 }
@@ -30,8 +31,10 @@
 }
 
 #main-window[tabsintitlebar]:not([inDOMFullscreen="true"]) #toolbar-menubar .titlebar-buttonbox-container {
-  display: none !important;
+  /*display: none !important;*/
+  visibility: hidden !important;
 }
+
 
 /* move caption buttons to windows top right position */
 #main-window[tabsintitlebar]:not([inDOMFullscreen="true"]) #toolbar-menubar ~ #TabsToolbar .titlebar-buttonbox-container {
@@ -50,7 +53,7 @@
 
 /* Windows */
 @media (-moz-os-version:windows-win10), (-moz-os-version:windows-win8), (-moz-os-version:windows-win7) {
-	#main-window[tabsintitlebar]:not([inDOMFullscreen="true"]) #toolbar-menubar ~ #TabsToolbar .titlebar-buttonbox-container	{
+	#main-window[tabsintitlebar]:not([inDOMFullscreen="true"]) #toolbar-menubar ~ #TabsToolbar .titlebar-buttonbox-container {
 	  top: 1px !important;
 	}
 	#main-window[tabsintitlebar][sizemode="maximized"]:not([inDOMFullscreen="true"]) #toolbar-menubar ~ #TabsToolbar .titlebar-buttonbox-container {
@@ -95,11 +98,11 @@
   #main-window:not([tabsintitlebar]) menubar > menu:not(:-moz-lwtheme)[_moz-menuactive="true"]:not([disabled="true"]) {
 	background-color: Highlight !important;
 	color: HighlightText !important;
-  }s
+  }
 }
 
 /* tweaks for fullscreen mode */
-#main-window[tabsintitlebar][sizemode="fullscreen"] #toolbar-menubar[autohide="true"] ~ #TabsToolbar .titlebar-buttonbox-container,
+#main-window[tabsintitlebar][sizemode="fullscreen"] #toolbar-menubar ~ #TabsToolbar .titlebar-buttonbox-container,
 #main-window[tabsintitlebar][sizemode="fullscreen"] #navigator-toolbox #PanelUI-button,
 #main-window #TabsToolbar #window-controls {
   display: none !important;
@@ -112,6 +115,20 @@
 #TabsToolbar *[type="pre-tabs"],
 #TabsToolbar *[type="post-tabs"] {
   display: none !important;
+}
+
+/* adjust private mode icon position */
+@media (-moz-os-version:windows-win10), (-moz-os-version:windows-win8), (-moz-os-version:windows-win7) {
+	#main-window[tabsintitlebar][privatebrowsingmode=temporary]:not([inDOMFullscreen="true"]) #TabsToolbar .private-browsing-indicator {
+	  position: fixed !important;
+	  top: 0 !important;
+	  right: 130px !important;
+	  visibility: visible !important;
+	  display: block !important;
+	}
+	#main-window[tabsintitlebar][privatebrowsingmode=temporary][sizemode="maximized"]:not([inDOMFullscreen="true"]) #TabsToolbar .private-browsing-indicator {
+	  top: 8px !important;
+	}
 }
 
 /* adjust tabs toolbar padding */
@@ -143,7 +160,7 @@
 }
 
 /* size of new tab tabs '+' icon */
-.tabs-newtab-button .toolbarbutton-icon {
+:-moz-any(.tabs-newtab-button,#tabs-newtab-button) .toolbarbutton-icon {
   padding: 0px !important;
   margin: 0px !important;
   width: 18px !important;
@@ -157,3 +174,47 @@
 	margin-top: 0 !important;
   }
 }
+
+
+/* show window caption buttons in fullscreen mode */
+#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"] #TabsToolbar #window-controls {
+  position: absolute !important;
+  display: block !important;
+  top: 0 !important;
+  right: 0 !important;
+  margin-top: -32px !important;
+  z-index: 1000 !important;
+}
+
+#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"] #nav-bar {
+  -moz-padding-end: 60px !important;
+}
+
+#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"] #TabsToolbar #window-controls toolbarbutton,
+#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"] #TabsToolbar #window-controls toolbarbutton .toolbarbutton-icon {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@media (-moz-os-version: windows-win10) {
+	#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"] #TabsToolbar #window-controls *,
+	#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"]:-moz-lwtheme:-moz-lwtheme-darktext #TabsToolbar #window-controls * {
+	  color: black !important;
+	  fill: black !important;
+	}
+
+	#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"]:-moz-lwtheme #TabsToolbar #window-controls * {
+	  color: white !important;
+	  fill: white !important;
+	}
+
+}
+
+/*
+@media (-moz-os-version:windows-win8), (-moz-os-version:windows-win7) {
+	#main-window:not([inDOMFullscreen="true"])[sizemode="fullscreen"] #nav-bar {
+	  -moz-padding-end: 60px !important;
+	}
+}*/
+
+/**/

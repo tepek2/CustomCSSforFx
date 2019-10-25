@@ -17,9 +17,13 @@
   height: var(--tab-min-height_tnot) !important;
 }
 
-#main-window[tabsintitlebar]:not([sizemode="fullscreen"]):not([inDOMFullscreen="true"]) .titlebar-buttonbox-container {
+#main-window[tabsintitlebar]:not([sizemode="fullscreen"]):not([inDOMFullscreen="true"]) .titlebar-buttonbox-container,
+#main-window[tabsintitlebar]:not([inDOMFullscreen="true"]) #toolbar-menubar ~ #TabsToolbar .titlebar-buttonbox-container  {
   position: fixed !important;
+  display:block !important;
   top: 0 !important;
+  left: 0 !important;
+  right: unset !important;
 }
 
 #tabbrowser-tabs .tabbrowser-arrowscrollbox {
@@ -30,7 +34,7 @@
 /* caption button position in maximized mode after moving to the top */
 #main-window[tabsintitlebar]:not([inDOMFullscreen="true"]) #toolbar-menubar[autohide="true"] ~ #TabsToolbar .titlebar-buttonbox-container,
 #main-window[tabsintitlebar][sizemode="maximized"]:not([inDOMFullscreen="true"]) #TabsToolbar .titlebar-buttonbox-container {
-  top: 0px !important;
+  top: 0 !important;
 }
 
 #PersonalToolbar {
@@ -38,4 +42,9 @@
   padding-bottom: 4px !important;
   height: unset !important;
   max-height: unset !important;
+}
+
+#main-window[tabsintitlebar]:not([sizemode="fullscreen"]) #titlebar {
+  margin-top: calc(-1 * var(--tab-min-height_tnot)) !important;
+  padding-top: var(--tab-min-height_tnot) !important;
 }
